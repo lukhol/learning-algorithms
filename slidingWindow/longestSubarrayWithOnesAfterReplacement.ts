@@ -2,6 +2,8 @@
 // replace no more than ‘k’ 0s with 1s, find the length of
 // the longest contiguous subarray having all 1s.
 
+// T: O(n)
+// S: O(1)
 function findLength(arr: (0 | 1)[], k: number): number {
    let startIdx = 0
    let numberOfZeros = 0
