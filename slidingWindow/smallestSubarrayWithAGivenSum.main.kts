@@ -41,3 +41,21 @@ assert(result4 == 6)
 
 val result5 = findMinSubarray(8, listOf(1, 1, 1, 1))
 assert(result5 == 0)
+
+fun findMinSubarrayOriginalSolution(s: Int, array: List<Int>): Int {
+    var currentSum = 0
+    var startIdx = 0
+    var minLength = Int.MAX_VALUE
+
+    for (endIdx in array.indices) {
+        currentSum += array[endIdx]
+
+        while (currentSum >= s) {
+            minLength = Math.min(minLength, endIdx - startIdx + 1)
+            currentSum -= array[startIdx]
+            startIdx++
+        }
+    }
+
+    return if (minLength == Int.MAX_VALUE) 0 else minLength
+}
