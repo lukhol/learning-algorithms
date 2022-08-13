@@ -16,14 +16,10 @@ fun longestSubstringWithKDistinctCharacters(str: String, k: Int): Int {
 
         while(letters.size > k) {
             val letter = str[startIdx]
-            if(letters.containsKey(letter)) {
-                val newCount = letters[letter]!! - 1
-                if (newCount == 0) {
-                    letters.remove(letter)
-                } else {
-                    letters[letter] = newCount
-                }
+            letters.compute(letter) { _, value ->
+                if (value == null) 0 else value - 1
             }
+            letters.remove(letter, 0)
             startIdx++
         }
 
