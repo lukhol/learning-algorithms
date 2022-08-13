@@ -38,7 +38,7 @@ val result2 = maximumSumSubarrayOfSizeK(listOf(2, 3, 4, 1, 5), 2)
 assert(result2 == listOf(3, 4))
 
 
-// Original question and answer
+// Original question and answer (first approach)
 // T: O(nk)
 // S: O(1)
 fun maximumSumSubarrayOfSizeKResult(array: List<Int>, k: Int): Int {
@@ -61,3 +61,22 @@ assert(result3 == 9)
 
 val result4 = maximumSumSubarrayOfSizeKResult(listOf(2, 3, 4, 1, 5), 2)
 assert(result4 == 7)
+
+// Original question and answer (second approach)
+// S: O(1)
+// T: O(n)
+fun maximumSumSubarrayOfSizeKResult2(array: List<Int>, k: Int): Int {
+    var windowSum = 0
+    var maxSum = 0
+    var windowStart = 0
+
+    for (windowEnd in array.indices) {
+        windowSum += array[windowEnd]
+        if(windowEnd >= k - 1) {
+            maxSum = Math.max(maxSum, windowSum)
+            windowSum -= array[windowStart++]
+        }
+    }
+
+    return maxSum
+}
