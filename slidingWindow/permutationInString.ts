@@ -13,9 +13,9 @@
 //
 // If a string has ‘n’ distinct characters it will have n!n! permutations.
 
+// S: O(k) where k is number of distinct characters in pattern
+// T: O(n) where n is length of input string
 function findPermutation(str: String, pattern: String): boolean {
-   function mapLength(obj: any) { return Object.keys(obj); }
-
    const patternLetters: Record<string, number> = pattern
        .split('')
        .reduce((prev: Record<string, number>, curr: string) => {
