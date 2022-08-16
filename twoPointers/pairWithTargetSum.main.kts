@@ -5,6 +5,8 @@
 // Write a function to return the indices of the two numbers (i.e. the pair)
 // such that they add up to the given target
 
+// T: O(n)
+// S: O(1)
 fun search(arr: List<Int>, targetSum: Int): List<Int> {
     var leftPointer = 0
     var rightPointer = arr.size - 1
