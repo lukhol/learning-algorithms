@@ -9,7 +9,7 @@
 - output - `[1, 4, 6], [1, 4, 7], [1, 5, 6], [1, 5, 7], [2, 4, 6], [2, 4, 7], [2, 5, 6], [2, 5, 7]`
 
 
-#### Reduce approach
+### Reduce approach
 
 **JavaScript**
 ```js
@@ -29,7 +29,7 @@ val result = input.fold(listOf(listOf<Int>())) { prev, curr ->
 println(result)
 ```
 
-#### Recursive approach
+### Recursive approach
 **Kotlin**
 ```kotlin
 val input = arrayListOf(listOf(1, 2), listOf(4, 5), listOf(6, 7))
@@ -71,7 +71,7 @@ function cartesian(idx: number = 0, next: T[] = []) {
 console.log(cartesian())
 ```
 
-#### Iterative approach
+### Iterative approach
 **Kotlin**
 ```kotlin 
 val input = arrayListOf(listOf(1, 2), listOf(4, 5), listOf(6, 7))
