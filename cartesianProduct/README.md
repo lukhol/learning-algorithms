@@ -28,3 +28,18 @@ val result = input.fold(listOf(listOf<Int>())) { prev, curr ->
 ```
 
 #### Recursive approach
+```kotlin
+val recursiveResult = arrayListOf<List<Int>>()
+fun cartesian(idx: Int, next: MutableList<Int>) {
+    if (next.size == eachProductLength) {
+        recursiveResult.add(next)
+        return
+    }
+
+    for (item in input[idx]) {
+        cartesian(idx + 1, next.plus(item).toMutableList())
+    }
+}
+
+cartesian(0, arrayListOf())
+```
