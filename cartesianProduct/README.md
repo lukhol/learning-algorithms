@@ -54,7 +54,22 @@ cartesian(0, arrayListOf())
 #### Iterative approach
 **Kotlin**
 ```kotlin 
-TODO
+val eachProductLength = input.filter { it.isNotEmpty() }.size
+val iterativeResults = arrayListOf<List<Int>>()
+val stack = Stack<Pair<Int, List<Int>>>()
+stack.add(Pair(0, arrayListOf()))
+
+while (stack.isNotEmpty()) {
+    val current = stack.pop()
+    if (current.second.size == eachProductLength) {
+        iterativeResults.add(current.second)
+        continue
+    }
+
+    for (item in input[current.first]) {
+        stack.add(Pair(current.first + 1, current.second.plus(item)))
+    }
+}
 ```
 
 **JavaScript**
