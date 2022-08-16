@@ -54,17 +54,17 @@ println(recursiveResult)
 **TypeScript**
 ```typescript
 const input = [[1, 2], [3, 4], [5, 6]];
-const eachProductLength = input.filter(it => it.length > 0).size
+const eachProductLength = input.filter(it => it.length > 0).length
 const recursiveResult = [];
 
 function cartesian(idx: number = 0, next: T[] = []) {
     if (next.length === eachProductLength) {
-        recursiveResult.add(next);
+        recursiveResult.push(next);
         return;
     }
 
-    for (item of input[idx]) {
-        cartesian(idx + 1, [...next, item])
+    for (const item of input[idx]) {
+        cartesian(idx + 1, [...next, item]);
     }
 }
 
