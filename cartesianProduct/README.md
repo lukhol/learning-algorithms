@@ -96,7 +96,25 @@ while (stack.isNotEmpty()) {
 println(iterativeResults)
 ```
 
-**JavaScript**
-```javascript
-// TODO
+**TypeScript**
+```typescript
+const input = [[1, 2], [3, 4], [5, 6]];
+const eachProductLength = input.filter(it => it.length > 0).length
+const iterativeResult = [];
+
+const stack = [{ idx: 0, cartesianProducts: [] }];
+
+while (stack.length > 0) {
+    const current = stack.pop();
+    if (current.cartesianProducts.length === eachProductLength) {
+        iterativeResult.push(current.cartesianProducts);
+        continue
+    }
+
+    for (const item of input[current.idx]) {
+        stack.push({ idx: current.idx + 1, cartesianProducts: [...current.cartesianProducts, item]});
+    }
+}
+
+console.log(iterativeResult);
 ```
