@@ -28,6 +28,7 @@ val result = input.fold(listOf(listOf<Int>())) { prev, curr ->
 ```
 
 #### Recursive approach
+**Kotlin**
 ```kotlin
 val eachProductLength = input.filter { it.isNotEmpty() }.size
 val recursiveResult = arrayListOf<List<Int>>()
@@ -43,4 +44,20 @@ fun cartesian(idx: Int, next: MutableList<Int>) {
 }
 
 cartesian(0, arrayListOf())
+```
+
+**JavaScript**
+```javascript
+// TODO
+```
+
+#### Iterative approach
+**Kotlin**
+```kotlin 
+TODO
+```
+
+**JavaScript**
+```javascript
+// TODO
 ```
