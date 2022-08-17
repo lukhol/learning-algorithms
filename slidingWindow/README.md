@@ -1,3 +1,4 @@
+#### Description
 1. Window can be of fixed length or variable length
 2. For most problems it's enough to iterate over an array with `endIndex` variable using for loop. `startIndex` variable can be increased/decreased manually. By moving `startIndex` sliding window can be
    * shrinked - incrementing startIdx
@@ -9,6 +10,7 @@
    * using counter of occurrences
    * using lenght variable
 
+#### Template
 ```kotlin
 fun slidingWindow(input: List<Int>, someInput: String) {
     var startIdx = 0
