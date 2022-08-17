@@ -1,15 +1,15 @@
-// 1. Window can be of fixed length or variable length
-// 2. For most problems it's enough to iterate over an array with `endIndex` variable using for loop.
-//    `startIndex` variable can be increased/decreased manually. By moving `startIndex` sliding window can be
-//    a) shrinked - incrementing startIdx
-//    b) stay fixed - do not touch startIdx
-//    c) expanded - decrease startIdx
-//    Generally `startIdx` can be changed using while loop with proper condition
-// 3. Some problems require 
-//    a) using a Map for counting occurences of letters/values/words.
-//    b) using counter of occurrences
-//    c) using lenght variable
+1. Window can be of fixed length or variable length
+2. For most problems it's enough to iterate over an array with `endIndex` variable using for loop. `startIndex` variable can be increased/decreased manually. By moving `startIndex` sliding window can be
+   * shrinked - incrementing startIdx
+   * stay fixed - do not touch startIdx
+   * expanded - decrease startIdx
+   Generally `startIdx` can be changed using while loop with proper condition
+3. Some problems require 
+   * using a Map for counting occurences of letters/values/words.
+   * using counter of occurrences
+   * using lenght variable
 
+```kotlin
 fun slidingWindow(input: List<Int>, someInput: String) {
     var startIdx = 0
     var mapping: Map<Any, Int> = someInput
@@ -42,3 +42,5 @@ fun slidingWindow(input: List<Int>, someInput: String) {
         }
     }
 }
+
+```
