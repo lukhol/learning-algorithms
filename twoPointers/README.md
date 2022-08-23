@@ -12,5 +12,34 @@ Two pointers can be used for:
  
 #### Template
 ```kotlin
-TODO
+fun twoPointers<T>(arr: List<T>, target: T) {
+  var leftPointer = 0
+  var rightPointer = arr.lastIndex
+  var middlePointer = arr.size / 2 // Sometimes we need middle pointer that can be moved in one of two direction
+  
+  while (rightPointer > leftPointer) {
+    val someCondition = false // Any condition
+    val otherCondition = false // Any condition
+    
+    // A) Move pointers by 1
+    if (someCondition) {
+      // do something
+      // 1. We can move both pointers
+      // 2. We can finish and return here
+      leftPointer++
+      rightPointer--
+    } else if (otherCondition) {
+      // Or only one of the pointers
+      leftPointer++
+    } else {
+      // Or only one of the pointers
+      rightPointer++
+    }
+    
+    // B) Move pointers for more than 1
+    while (leftPointer <= arr.lastIndex && arr[leftPointer] > target) {
+      leftPointer++
+    }
+  }
+}
 ```
