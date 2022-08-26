@@ -4,11 +4,13 @@
 
 class LinkedList(val value: Int, var next: LinkedList? = null)
 
+// A) First approach
 // Solution is to find length of the cycle, then iterate from the beginning
 // by cycle length iteration. Then iterate from that position with one pointer
 // and from the beginning with other pointer. When they meet then we found
 // beginning of the cycle
 //
+// B) Second approach
 // 1. Other approach is just to iterate with slow and fast pointer until they meet
 // 2. Then take again two pointers - first is the head, and second is that meet node from pointer 1
 // 3. Iterate using those two pointers until they meet. When meet then return.
@@ -19,6 +21,7 @@ class LinkedList(val value: Int, var next: LinkedList? = null)
 //           8 <- 7 <- 6
 // S: O(1)
 // T: O(n)
+// A) First approach
 fun findCycleStart(head: LinkedList): LinkedList {
     var cycleLength = findCycleLength(head)
     var slow: LinkedList? = head
@@ -62,6 +65,7 @@ fun findCycleLength(head: LinkedList?): Int {
     return 0
 }
 
+// B) Second approach
 fun findLoop(head: LinkedList?): LinkedList? {
     var slow = head
     var fast = head
