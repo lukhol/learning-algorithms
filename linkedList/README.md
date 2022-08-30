@@ -23,6 +23,8 @@ fun reverseLinkedList(head: LinkedList): LinkedList {
 ```
 2. Split linked list into two parts (can be achieved with two pointers) and optionally reverse one part.
 ```kotlin
+// EVEN 1 -> 2 -> 3 -> 4 will produce 3 -> 4
+// ODD  1 -> 2 -> 3 -> 4 -> 5 will produce 4 -> 5
 fun splitInTheMiddle(head: LinkedList?): LinkedList {
     var slow = head
     var fast = head
