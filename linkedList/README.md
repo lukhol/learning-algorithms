@@ -22,8 +22,33 @@ fun reverseLinkedList(head: LinkedList): LinkedList {
 }
 ```
 2. Split linked list into two parts (can be achieved with two pointers) and optionally reverse one part.
+```kotlin
+```
 3. Maintain more than two pointers, split list into multiple lists and then connect them together again in different order. Usually for each sublist we need head, tail and sometimes prev element.
+```kotlin
+```
 4. Calculating length of the linked list.
+```kotlin
+fun linkedListLength(head: LinkedList): Int {
+    var length = 0
+    var curr: LinkedList? = head
+    while(curr != null) {
+        length++
+        curr = curr.next
+    }
+    return length
+}
+```
+5. Finding last element
+``` kotlin
+fun findLastNodeInLinkedList(head: LinkedList): LinkedList {
+    var current: LinkedList = head
+    while (current.next != null) {
+        current = current.next
+    }
+    return current
+}
+```
 
 Typically to solve more complex question multiple technics from above needs to be combined.
 
