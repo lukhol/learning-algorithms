@@ -6,7 +6,7 @@
 data class Interval(val start: Int, val end: Int)
 
 // S: O(1)
-// T: O(n)
+// T: O(n logn) - because of sorting 
 fun canAttendAllApointments(intervals: List<Interval>): Boolean {
     if (intervals.size <= 1) return true  
     val sortedIntervals = intervals.sortedBy { it.start }
