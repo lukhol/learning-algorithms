@@ -31,6 +31,9 @@ fun canAttendAllApointments(intervals: List<Interval>): Boolean {
   return true
 }
 
+// Alternatively shorter version is just to have inlined if statement.
+// if (sortedIntervals[idx].start < sortedIntervals[idx - 1].end)
+
 println(!canAttendAllApointments(listOf(Interval(1, 4), Interval(2, 5), Interval(7,9))))
 println(canAttendAllApointments(listOf(Interval(6, 7), Interval(2, 4), Interval(8, 12))))
 println(!canAttendAllApointments(listOf(Interval(4, 5), Interval(2, 3), Interval(3, 6))))
