@@ -14,6 +14,10 @@
 data class Interval(val start: Int, val end: Int)
 class MutablePair<T1, T2>(var first: T1, var second: T2)
 
+// n - numbers of lists
+// k - size of longest list
+// S: O(n)
+// T: O(n * k * nlogk)
 fun mergeNListsOfPotentiallyOverlappingIntervals(intervals: List<List<Interval>>): List<Interval> {
     if (intervals.isEmpty()) return emptyList()
     val results = arrayListOf<Interval>()
