@@ -62,3 +62,35 @@ println(
         Interval(1, 4), Interval(5, 7)
     )
 )
+
+
+// Other, very similar approach:
+fun insertInterval(intervals: List<Interval>, newInterval: Interval): List<Interval> {
+    if (intervals.isEmpty()) return listOf(newInterval)
+    val result = arrayListOf<Interval>()
+    var globalIdx = 0
+
+    // Add all intervals that ends before newInterval starts
+    while (intervals.size > globalIdx && intervals[globalIdx].end < newInterval.start) {
+        result.add(intervals[globalIdx++])
+    }
+
+    var start = Math.min(intervals[globalIdx].start, newInterval.start) 
+    var end = Math.max(intervals[globalIdx].end, newInterval.end)
+
+    // Expand current interval
+    while (intervals.size > globalIdx && intervals[globalIdx].start < end) {
+        end = Math.max(end, intervals[globalIdx++].end)
+    }
+
+    // Add expanded interval to the result list
+    result.add(Interval(start, end))
+
+    // Add rest of the intervals
+    for(idx in globalIdx .. intervals.lastIndex) {
+        result.add(intervals[idx])
+    }
+
+    return result
+}
+    
