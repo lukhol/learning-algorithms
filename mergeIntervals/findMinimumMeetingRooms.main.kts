@@ -5,9 +5,7 @@ data class Interval(val start: Int, val end: Int)
 
 fun main() {
     // S: O(1)
-    // T: O(n^2) - in worst case scenario when all meeting overlaps I have to traverse from 0 to n, then from 1 to n etc.
-    //             Simple optimization would be to return if inside inner while loop we reached the end OR jump in main loop 
-    //             to element not touched by while loop?
+    // T: O(n logn) - because of sorting  
     fun findMinimumMeetingRooms(intervals: List<Interval>): Int {
         if (intervals.isEmpty()) return 0
         if (intervals.size == 1) return 1
@@ -16,13 +14,15 @@ fun main() {
         var end = sortedIntervals.first().end
 
         var maxMeetingsRooms = 1
-        for (i in 1 .. sortedIntervals.lastIndex) {
+        var i = 1
+        while (i != sortedIntervals.size) {
             var count = 1
             val current = sortedIntervals[i]
             var bStart = current.start
             var bEnd = current.end
-
-            while (start in bStart until bEnd || bStart in start until end) {
+            
+            fun overlaps() = start in bStart until bEnd || bStart in start until end
+            while (overlaps()) {
                 count++
                 maxMeetingsRooms = Math.max(maxMeetingsRooms, count)
 
@@ -32,10 +32,12 @@ fun main() {
                 end = Math.min(end, bEnd)
                 bStart = sortedIntervals[nextIndex].start
                 bEnd = sortedIntervals[nextIndex].end
+                if (!overlaps()) i++
             }
 
             start = current.start
             end = current.end
+            i++
         }
 
 
