@@ -44,6 +44,21 @@ fun main() {
         return maxMeetingsRooms
     }
     
+    // S: O(1)
+    // T: O(n)
+    // Both assuming that start > 0 and end <= 24 - because day have only 24 hours, 
+    // but if we are counting in let's say seconds then it's worst.
+    fun findMinimumMeetingRoomsMap(intervals: List<Interval>): Int {
+        val perHourCounter = hashMapOf<Int, Int>()
+        for (interval in intervals) {
+            for (i in interval.start until interval.end) {
+                perHourCounter.compute(i) { _, current -> if (current != null) current + 1 else 1 }
+            }
+        }
+
+        return perHourCounter.maxOf { it.value }
+    }
+    
     // S: O(k) - where k is minium meeting rooms required (stored in the heap)
     // T: O(n logn) - because of sorting
     fun findMinimumMeetingRoomsPriorityQueue(intervals: List<Interval>): Int {
