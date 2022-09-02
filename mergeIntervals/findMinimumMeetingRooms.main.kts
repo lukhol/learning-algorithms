@@ -4,6 +4,10 @@
 data class Interval(val start: Int, val end: Int)
 
 fun main() {
+    // S: O(1)
+    // T: O(n^2) - in worst case scenario when all meeting overlaps I have to traverse from 0 to n, then from 1 to n etc.
+    //             Simple optimization would be to return if inside inner while loop we reached the end OR jump in main loop 
+    //             to element not touched by while loop?
     fun findMinimumMeetingRooms(intervals: List<Interval>): Int {
         if (intervals.isEmpty()) return 0
         if (intervals.size == 1) return 1
@@ -34,6 +38,28 @@ fun main() {
             end = current.end
         }
 
+
+        return maxMeetingsRooms
+    }
+    
+    // S: O(k) - where k is minium meeting rooms required (stored in the heap)
+    // T: O(n logn) - because of sorting
+    fun findMinimumMeetingRoomsPriorityQueue(intervals: List<Interval>): Int {
+        if (intervals.isEmpty()) return 0
+        if (intervals.size == 1) return 1
+        val sortedIntervals = intervals.sortedBy { it.end }
+
+        var maxMeetingsRooms = 1
+        val heap = PriorityQueue(Comparator.comparing(Interval::end))
+
+        for (interval in sortedIntervals) {
+            while(heap.isNotEmpty() && interval.start >= heap.peek().end) {
+                heap.poll()
+            }
+
+            heap.add(interval)
+            maxMeetingsRooms = Math.max(maxMeetingsRooms, heap.size)
+        }
 
         return maxMeetingsRooms
     }
