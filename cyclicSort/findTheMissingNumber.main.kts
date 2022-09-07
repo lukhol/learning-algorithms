@@ -3,9 +3,8 @@
 // We are given an array containing ‘n’ distinct numbers taken from the range 0 to ‘n’.
 // Since the array has only ‘n’ numbers out of the total ‘n+1’ numbers, find the missing number.
 fun main() {
-    // n = 2, eg. [2,1]
-    // 0,1,2
-    //
+    // S: O(1)
+    // T: O(n)
     fun findTheMissingNumber(arr: MutableList<Int>): Int {
         if (arr.isEmpty()) return -1
         var idx = 0
@@ -41,6 +40,8 @@ fun main() {
 main()
 
 // Alternatively a lot simple approach:
+// S: O(1)
+// T: O(n)
 fun findTheMissingNumber(arr: MutableList<Int>): Int {
     var idx = 0
     // Put all numbres on it's places skipping when index is out of range
