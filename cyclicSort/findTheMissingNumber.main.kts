@@ -39,3 +39,26 @@ fun main() {
 }
 
 main()
+
+// Alternatively a lot simple approach:
+fun findTheMissingNumber(arr: MutableList<Int>): Int {
+    var idx = 0
+    // Put all numbres on it's places skipping when index is out of range
+    while (arr.size > idx) {
+        if (arr[idx] != arr.size && arr[idx] != idx) {
+            swap(arr, idx, arr[idx])
+        } else {
+            idx++
+        }
+    }
+
+    // Find number that is not placed correctly
+    var missingNumber = 0
+    while (arr.size > missingNumber) {
+        if (arr[missingNumber] != missingNumber) return missingNumber
+        missingNumber++
+    }
+
+    // If didn't find then return missingNumber because it's just arr.size
+    return missingNumber
+}
