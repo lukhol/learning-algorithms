@@ -7,7 +7,6 @@ fun main() {
     fun findAllMissingNumbers(arr: MutableList<Int>): List<Int> {
 	val result = arrayListOf<Int>()
         var idx = 0
-        var count = 0
         while (idx != arr.size) {
             if (arr[idx] != arr[arr[idx] - 1]) {
                 swap(arr, arr[idx] - 1, idx)
