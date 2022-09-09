@@ -4,9 +4,26 @@
 // The array can have duplicates, which means some numbers will be missing.
 // Find all those missing numbers.
 fun main() {
-    fun findDuplicatedNumber(arr: List<Int>): List<Int> {
-        // TODO
-        return arr
+    fun findDuplicatedNumber(arr: MutableList<Int>): List<Int> {
+		val result = arrayListOf<Int>()
+        var idx = 0
+        var count = 0
+        while (idx != arr.size) {
+            if (arr[idx] != arr[arr[idx] - 1]) {
+                swap(arr, arr[idx] - 1, idx)
+            } else { 
+            	idx++
+            }
+        }
+        
+        for (idx in arr.indices) {
+           val item = arr[idx]
+           if (item != idx + 1) {
+               result.add(idx + 1)
+           }
+        }
+        
+        return result
     }
     
     
