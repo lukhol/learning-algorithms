@@ -14,7 +14,9 @@ fun main() {
     fun findNumbers2(arr: MutableList<Int>): List<Int> {
         var idx = 0
         while (idx < arr.size) {
-            if (arr[idx] != arr[arr[idx] - 1]) {
+            val j = arr[idx] - 1
+            // if (arr[idx] != idx + 1 && arr[idx] != arr[j]) { //
+            if (arr[idx] != arr[j]) { // Swap until both numbers are not equal
                 swap(arr, idx, arr[idx] - 1)
             } else {
                 idx++
