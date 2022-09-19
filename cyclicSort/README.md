@@ -20,3 +20,29 @@ fun cyclicSort(arr: MutableList<Int>): List<Int> {
   return arr
 }
 ```
+
+* Typical cyclic sort generalized for this template *
+```kotlin
+fun swap(arr: MutableList<Int>, i: Int, j: Int) {
+    val tmp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = tmp
+}
+
+fun cyclicSort(arr: MutableList<Int>): List<Int> {
+    var idx = 0
+    while(arr.size > idx) {
+        val j = arr[idx] - 1
+        val currentValue = arr[idx]
+
+        val areIndexesInBounds = j > 0 && j < arr.size
+        val isSwapForDifferentNumber = areIndexesInBounds && currentValue != arr[j] // candidateToSwap
+        if (isSwapForDifferentNumber) {
+            swap(arr, idx, j)
+        } else {
+            idx++
+        }
+    }
+    return arr
+}
+```
