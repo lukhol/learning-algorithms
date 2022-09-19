@@ -11,6 +11,10 @@ fun main() {
         arr[j] = tmp
     }
 
+    // We have to check if element on current index is not equal to index + 1
+    // This is standard check - if on current index is proper number.
+    // Then if current number is equal to number that we want to switch, 
+    // then it's that duplicated number
     fun findNumber(arr: MutableList<Int>): Int {
         var idx = 0
         while (arr.size > idx) {
