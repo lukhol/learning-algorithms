@@ -8,12 +8,29 @@ fun main() {
         arr[j] = tmp
     }
 
-    // S: O(1)
-    // T: O(n)
+    // I need to put all numbers on corresponding index.
+    // If number is bigger than size or smaller than 1 then ...
     fun findTheSmallestMissingPositiveNumber(arr: MutableList<Int>): Int {
-        TODO()
-    }
+        var idx = 0
+        while (arr.size > idx) {
+            val isCurrentNumberOnItsIndex = arr[idx] == idx + 1
+            val isCurrentNumberInBounds = arr[idx] > 0 && arr[idx] <= arr.size
+            if (!isCurrentNumberOnItsIndex && isCurrentNumberInBounds) {
+                swap(arr, idx, arr[idx] - 1)
+            } else {
+                idx++
+            }
+        }
 
+        for (i in arr.indices) {
+            val indexFromOneInsteadOfZero = i + 1
+            if (indexFromOneInsteadOfZero != arr[i]) {
+                return indexFromOneInsteadOfZero
+            }
+        }
+
+        return arr.size + 1
+    }
 
     println(findTheSmallestMissingPositiveNumber(arrayListOf(-3, 1, 5, 4, 2)) == 3)
     println(findTheSmallestMissingPositiveNumber(arrayListOf(3, -2, 0, 1, 2)) == 4)
