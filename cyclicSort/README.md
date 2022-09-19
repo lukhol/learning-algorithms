@@ -17,6 +17,12 @@ fun cyclicSort(arr: MutableList<Int>): List<Int> {
     }
   }
   
+  // Optionally
+  for (i in arr.indices) {
+    // Find number not on it's index
+    // Find duplicated number, missing number etc.
+  }
+  
   return arr
 }
 ```
