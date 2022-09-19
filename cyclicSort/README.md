@@ -10,7 +10,7 @@ fun cyclicSort(arr: MutableList<Int>): List<Int> {
   var idx = 0
   while (arr.size > idx) {
     val j = ... // index to swap - mostly arr[idx] 1
-    if (areIndexesInBounds && !swapForDifferentNumber) { 
+    if (areIndexesInBounds && isSwapForDifferentNumber) { 
       swap(arr, i, j)
     } else {
       idx++
