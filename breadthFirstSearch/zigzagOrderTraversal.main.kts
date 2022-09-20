@@ -11,12 +11,14 @@ class TreeNode (val value: Int) {
     var right: TreeNode? = null
 }
 
+// S: O(n)
+// T: O(n)
 fun main() {
     fun traverse(root: TreeNode): List<List<Int>> {
         val result = arrayListOf<List<Int>>()
         val queue: Queue<TreeNode> = LinkedList()
         queue.add(root)
-        var iter = 0
+        var iter = 0 // It will be easier to just use leftToRight boolean variable...
         while(queue.isNotEmpty()) {
             val elementsOnLevel = queue.size
             val thisLevelValues = LinkedList<Int>()
