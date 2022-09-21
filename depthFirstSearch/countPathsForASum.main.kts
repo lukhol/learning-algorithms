@@ -39,6 +39,26 @@ fun main() {
         return dfs(root, arrayListOf(), 0)
     }
 
+    // Approach from educative
+    fun countPathsForASum2(root: TreeNode, s: Int): Int {
+        fun dfs(node: TreeNode?, numsUntilNow: MutableList<Int>): Int {
+            if (node == null) return 0
+            numsUntilNow.add(node.value)
+            var currentSum = numsUntilNow.last()
+            var currentCount = 0
+            for (i in numsUntilNow.lastIndex - 1 downTo 0) {
+                currentSum += numsUntilNow[i]
+                if (currentSum == s) currentCount++
+            }
+            currentCount += dfs(node.left, numsUntilNow)
+            currentCount += dfs(node.right, numsUntilNow)
+            numsUntilNow.removeLast()
+            return currentCount
+        }
+
+        return dfs(root, arrayListOf())
+    }
+
     val root = TreeNode(1)
     root.left = TreeNode(7)
     root.right = TreeNode(9)
@@ -48,7 +68,7 @@ fun main() {
     root.right?.left = TreeNode(2)
     root.right?.right = TreeNode(3)
 
-    val count = countPathsForASum(root, 12)
+    val count = countPathsForASum2(root, 12)
     println(count)
     println(count == 3)
 }
