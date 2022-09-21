@@ -12,20 +12,24 @@ class TreeNode (val value: Int) {
 
 fun main() {
     // S: O(n)
-    // T: O(n^2)
+    // T: O(n^2) - because of numberOfPathsEqualToSum
     fun countPathsForASum(root: TreeNode, s: Int): Int {
-        fun isEqualInRow(nums: List<Int>, sum: Int): Boolean {
+        fun numberOfPathsEqualToSum(nums: List<Int>, sum: Int): Int {
+            var count = 0
+            var currentSum = nums.last()
             for (i in nums.lastIndex - 1 downTo 0) {
-                val thisSum = nums.subList(i, nums.lastIndex + 1).sum()
-                if (thisSum == sum) return true
+                currentSum += nums[i]
+                if (currentSum == sum) count++
             }
-            return false
+
+            return count
         }
 
         fun dfs(node: TreeNode?, numsUntilNow: MutableList<Int>, count: Int): Int {
             if (node == null) return count
             numsUntilNow.add(node.value)
-            var newCount = if (isEqualInRow(numsUntilNow, s)) count + 1 else count
+            val pathsEqualToSumCount = numberOfPathsEqualToSum(numsUntilNow, s)
+            var newCount = count + pathsEqualToSumCount
             newCount = Math.max(newCount, dfs(node.left, numsUntilNow, newCount))
             newCount = Math.max(newCount, dfs(node.right, numsUntilNow, newCount))
             numsUntilNow.removeLast()
