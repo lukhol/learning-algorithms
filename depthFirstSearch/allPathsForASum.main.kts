@@ -12,11 +12,37 @@ class TreeNode (val value: Int) {
     var next: TreeNode? = null
 }
 
-// S: O(n) - functions stack because of recursion
+// S: O(n) - functions stack because of recurention
 // T: O(n)
 fun main() {
+    // n - number of nodes
+    // h - max height of the tree
+    // 
+    // S: O(n) - in worst case tree will be linked list and we will need to store all list in currentPath/result lists
+    // T: O(n * h) - h is there because of `ArrayList(currentPath)`
+    fun binaryTreePathSum(root: TreeNode, targetSum: Int): List<List<Int>> {
+        val result = arrayListOf<List<Int>>()
+        
+        fun dfs(node: TreeNode?, currentSum: Int, currentPath: MutableList<Int> = arrayListOf()) {
+            if (node == null) return
+            var newSum = currentSum - node.value
+            currentPath.add(node.value)
+            if (newSum == 0 && node.left == null && node.right == null) {
+                result.add(ArrayList(currentPath)) 
+            } else {
+                dfs(node.left, newSum, currentPath)
+            	dfs(node.right, newSum, currentPath)
+            }
+            currentPath.removeLast()
+        }
+        
+        dfs(root, targetSum)
+        return result
+    }
     
-    fun binarybinaryTreePathSum(root: TreeNode, targetSum: Int): List<List<Int>> {
+    // S: O()
+    // T: O()
+    fun binaryTreePathSum2(root: TreeNode, targetSum: Int): List<List<Int>> {
         val result = arrayListOf<List<Int>>()
         
         fun dfs(node: TreeNode?, currentSum: Int, currentPath: List<Int> = emptyList()) {
@@ -30,7 +56,7 @@ fun main() {
             dfs(node.right, newSum, currentPath.plus(node.value))
         }
         
-        println(result)
+        dfs(root, targetSum)
         return result
     }
     
@@ -43,9 +69,7 @@ fun main() {
     root.right?.left = TreeNode(10)
     root.right?.right = TreeNode(5)
 
-    val result = binarybinaryTreePathSum(root, 23)
+    val result = binaryTreePathSum(root, 23)
     println(result)
     println(result == listOf(listOf(12, 7, 4), listOf(12, 1, 10)))
 }
-
-main()
