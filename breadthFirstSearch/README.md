@@ -12,6 +12,13 @@ class TreeNode (val value: Int) {
 }
 ```
 
+Possible tasks are:
+- find left/right view of the tree
+- create linked list from the tree
+- calculate average value in the tree (+ for the each level)
+- 
+
+
 #### Template
 ```kotlin
 fun bfs(root: TreeNode) {
