@@ -13,7 +13,7 @@ class TreeNode (val value: Int) {
     var next: TreeNode? = null
 }
 
-// S: O(n) - functions stack because of recurention
+// S: O(n) - functions stack because of recursion
 // T: O(n)
 fun main() {
     fun binaryTreePathSum(root: TreeNode, targetSum: Int): Boolean {
