@@ -9,11 +9,8 @@ import java.util.Queue
 class TreeNode (val value: Int) {
     var left: TreeNode? = null
     var right: TreeNode? = null
-    var next: TreeNode? = null
 }
 
-// S: O(n) - functions stack because of recurention
-// T: O(n)
 fun main() {
     // n - number of nodes
     // h - max height of the tree
@@ -40,8 +37,6 @@ fun main() {
         return result
     }
     
-    // S: O()
-    // T: O()
     fun binaryTreePathSum2(root: TreeNode, targetSum: Int): List<List<Int>> {
         val result = arrayListOf<List<Int>>()
         
