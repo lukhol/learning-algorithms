@@ -12,14 +12,21 @@ class TreeNode (val value: Int) {
 
 fun main() {
     fun pathWithMaximumSum(root: TreeNode): Int {
-
+    	var maxSum = Int.MIN_VALUE
         fun dfs(node: TreeNode?): Int {
-            TODO()
+            if (node == null) return 0
+            val left = dfs(node.left)
+            val right = dfs(node.right)
+            
+            maxSum = Math.max(maxSum, left + right + node.value)
+            maxSum = Math.max(maxSum, left + node.value)
+            maxSum = Math.max(maxSum, right + node.value)
+            
+           	return Math.max(left + node.value, right + node.value)
         }
-
         dfs(root)
-        return -1
-    }
+        return maxSum
+	}	
 
     fun fixtureWithRoot(): Pair<TreeNode, Int> {
         val root = TreeNode(1)
