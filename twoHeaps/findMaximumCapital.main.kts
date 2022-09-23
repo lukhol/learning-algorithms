@@ -25,7 +25,8 @@ fun findMaximumCapital(capital: List<Int>, profits: List<Int>, numberOfProjects:
 }
 
 fun main() {
-	
     println(findMaximumCapital(listOf(0, 1, 2), listOf(1, 2, 3), 1, 2) == 6)
     println(findMaximumCapital(listOf(0, 1, 2, 3), listOf(1, 2, 3, 4), 0, 3) == 8)
 }
+
+main()
