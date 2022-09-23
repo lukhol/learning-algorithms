@@ -45,7 +45,7 @@ class MedianOfAStream {
 }
 
 fun main() {
-	val medianOfAStream = MedianOfAStream()
+  val medianOfAStream = MedianOfAStream()
   medianOfAStream.insert(3)
   medianOfAStream.insert(1)
   println(medianOfAStream.median() == 2.0)
