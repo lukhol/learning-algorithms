@@ -12,5 +12,5 @@
 5. Sorting by start time eliminates 3 of of 6 cases. 
 6. Some tasks can can be solved using mean heap - TODO.
 7. How to connect two intervals:
-- merge - start - min(aStart, bStart), end - max(aEnd, bEnd)
-- overlap - max(aStart, bStart), end min(aEnd, bEnd)
+- merge - start - `min(aStart, bStart)`, end - `max(aEnd, bEnd)`
+- overlap - `max(aStart, bStart`), end `min(aEnd, bEnd)`
