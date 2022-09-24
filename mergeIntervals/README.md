@@ -13,4 +13,4 @@
 6. Some tasks can can be solved using mean heap - TODO.
 7. How to connect two intervals:
 - merge - start - `min(aStart, bStart)`, end - `max(aEnd, bEnd)`
-- overlap - `max(aStart, bStart`), end `min(aEnd, bEnd)`
+- overlap - `max(aStart, bStart)`, end `min(aEnd, bEnd)`
