@@ -5,6 +5,27 @@
 
 class Solution {
     fun letterCasePermutation(s: String): List<String> {
+        val result = mutableListOf<String>()
+        result.add(s)
+        for (i in 0 .. s.lastIndex) {
+            val char = s[i]
+            if (char.isLetter()) {
+                result.addAll(result.map {
+                    val asCharArray = it.toCharArray()
+                    asCharArray[i] = if (asCharArray[i].isLowerCase()) {
+                        asCharArray[i].toUpperCase()
+                    } else {
+                        asCharArray[i].toLowerCase()
+                    }
+                    asCharArray.joinToString("")
+                })
+            }
+        }
+
+        return result
+    }
+    
+    fun letterCasePermutation2(s: String): List<String> {
         var result = mutableListOf<String>()
         for (i in 0 .. s.lastIndex) {
             val char = s[i]
