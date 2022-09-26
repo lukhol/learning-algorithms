@@ -13,6 +13,27 @@ fun subsets(arr: List<Int>): List<List<Int>> {
     return result
 }
 
+fun subsetsDfs(nums: IntArray): List<List<Int>> {
+    val result = arrayListOf<MutableList<Int>>()
+
+    fun dfs(startFromIndex: Int, curr: MutableList<Int>, numOfElements: Int) {
+        if (numOfElements == curr.size) {
+            result.add(ArrayList(curr))
+            if (numOfElements == nums.size) return
+        }
+
+        for (i in startFromIndex .. nums.lastIndex) {
+            curr.add(nums[i])
+            dfs(i + 1, curr, numOfElements + 1)
+            curr.removeAt(curr.size - 1)
+        }
+    }
+
+    dfs(0, arrayListOf(), 0)
+
+    return result
+}
+
 println(subsets(listOf(1, 3)) == listOf(
     listOf(),
     listOf(1),
