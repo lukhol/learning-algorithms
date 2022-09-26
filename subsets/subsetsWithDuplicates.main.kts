@@ -19,6 +19,28 @@ fun subsetsWithDuplicates(nums: IntArray): List<List<Int>> {
     return result
 }
 
+fun subsetsWithDuplicatesDfs(nums: IntArray): List<List<Int>> {
+    nums.sort()
+    val result = arrayListOf<MutableList<Int>>()
+
+    fun dfs(startIdx: Int, current: MutableList<Int>) {
+        result.add(ArrayList(current))
+
+        for (i in startIdx .. nums.lastIndex) {
+            if (i > startIdx && nums[i] == nums[i - 1]) {
+                continue
+            }
+
+            current.add(nums[i])
+            dfs(i + 1, current)
+            current.removeAt(current.size - 1)
+        }
+    }
+
+    dfs(0, arrayListOf())
+    return result
+}
+
 println(subsetsWithDuplicates(intArrayOf(1, 3, 3)) == listOf(
     listOf(),
     listOf(1),
