@@ -9,31 +9,27 @@ class Solution {
     fun generateParenthesis(n: Int): List<String> {
         var result = arrayListOf<String>()
         
-        fun dfs(leftCount: Int, counter: BracketsCount) {
-            if (counter.value.length == n * 2) {
-                result.add(counter.value)
+        fun dfs(used: Int, opening: Int, closing: Int, sb: StringBuilder) {
+            if (sb.length == n * 2) {
+                result.add(sb.toString())
                 return
             }
             
-            if (counter.opening < n) {
-                counter.opening += 1
-                counter.value += "("
-                dfs(leftCount + 1, counter)
-                counter.opening -= 1
-                counter.value = counter.value.dropLast(1)
+            if (opening < n) {
+                sb.append('(')
+                dfs(used + 1, opening + 1, closing, sb)
+                sb.deleteCharAt(sb.length - 1)
             }
-            if (counter.opening > counter.closing) {
-                counter.closing += 1
-                counter.value += ")"
-                dfs(leftCount + 1, counter)
-                counter.closing -= 1
-                counter.value = counter.value.dropLast(1)
+            if (opening > closing) {
+                sb.append(')')
+                dfs(used + 1, opening, closing + 1, sb)
+                sb.deleteCharAt(sb.length - 1)
             }
     }
         
-        dfs(n, BracketsCount(0, 0, ""))
+        dfs(n, 0, 0, StringBuilder())
         return result
     }
 }
 
-    println(Solution().generateParenthesis(3) == listOf("((()))", "(()())", "(())()", "()(())", "()()()"))
+println(Solution().generateParenthesis(3) == listOf("((()))", "(()())", "(())()", "()(())", "()()()"))
