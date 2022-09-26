@@ -46,6 +46,32 @@ fun subsetsWithDuplicates(nums: IntArray): List<List<Int>> {
     return result
 }
 
+class Solution {
+    fun permute(nums: IntArray): List<List<Int>> {
+        val result = arrayListOf<List<Int>>()
+        val queue = LinkedList<List<Int>>()
+        queue.add(emptyList())
+        
+        for (currentValue in nums) {
+            for (i in 0 .. queue.lastIndex) {
+                val currentPerm = queue.poll()
+                val toIdx = if (currentPerm.lastIndex == -1) 0 else currentPerm.size
+                for (inPermIdx in 0 .. toIdx) {
+                    val copy = currentPerm.toMutableList()
+                    copy.add(inPermIdx, currentValue)
+                    if (copy.size == nums.size) {
+                        result.add(copy)
+                    } else {
+                        queue.add(copy)
+                    }
+                }
+            }
+        }
+        
+        return result
+    }
+}
+
 println(subsetsWithDuplicates(intArrayOf(1, 3, 5)) == listOf(
     listOf(5, 3, 1),
     listOf(3, 5, 1),
