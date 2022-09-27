@@ -8,7 +8,6 @@ import java.lang.StringBuilder
 // by the count of characters in the substring. Take the example of “ab” which has four substrings:
 // "", "a", "b", and "ab". After replacing these substrings in the actual word by the count of
 // characters we get all the generalized abbreviations: "ab", "1b", "a1", and "2".
-
 fun main() {
 
     /**
@@ -19,7 +18,7 @@ fun main() {
      *  3
      *
      *  Replace each letter with number 1 from left to right
-     *  Then always replace from left to right but join all numbers
+     *  Then always replace from left to right but join all numbers to left
      */
     fun generateGeneralizedAbbreviation(word: String): List<String> {
         val result = arrayListOf<String>()
@@ -35,11 +34,12 @@ fun main() {
                 }
 
                 var collapseNumbersIdx = i - 1
-                var newStartIdx = 0
+                var newStartIdx =  i + 1
 
                 if (collapseNumbersIdx >= 0 && currCopy[collapseNumbersIdx].isDigit()) {
                     var prevNumberAsString = Character.getNumericValue(currCopy[collapseNumbersIdx]).toString()
                     var toDeleteCount = 1
+
                     while (collapseNumbersIdx - 1 >= 0 && currCopy[collapseNumbersIdx - 1].isDigit()) {
                         collapseNumbersIdx--
                         toDeleteCount++
@@ -52,12 +52,9 @@ fun main() {
                     currCopy.insert(collapseNumbersIdx, digitsToAdd)
 
                     newStartIdx = i + digitsToAdd.size - toDeleteCount
-
-                    collapseNumbersIdx--
                 }
-                val nextIdx = if (collapseNumbersIdx == i - 1) i + 1 else newStartIdx
 
-                dfs(nextIdx, currCopy)
+                dfs(newStartIdx, currCopy)
             }
         }
 
@@ -94,4 +91,3 @@ fun main() {
     println(actual.filter { !expected.contains(it) })
     println(expected.filter { !actual.contains(it) })
 }
-
