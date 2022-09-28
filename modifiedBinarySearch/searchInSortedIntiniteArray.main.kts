@@ -12,7 +12,11 @@ class Solution {
     // T: O(logn)
     fun search(reader: ArrayReader, target: Int): Int {
         var startIdx = 0
-        var endIdx = Int.MAX_VALUE
+        var endIdx = 1
+        while (target > reader.get(endIdx)) {
+            endIdx = endIdx * 2
+        }
+      
         while (endIdx >= startIdx) {
             val middleIdx = startIdx + (endIdx - startIdx) / 2
             if (reader.get(middleIdx) == Int.MAX_VALUE) {
