@@ -10,13 +10,16 @@
 // T: O(logn)
 class Solution {
 
-    // 0, 1, 2, 3, 4,  5
-    // 2, 4, 6, 8, 10, 12
-    // startIdx = 0, endIdx = 5, middleIdx = 2
-    // startIdx = 2, endIdx = 5, middleIdx = 3
-    // startIdx = 2, endIdx = 3
-    // target = 7
-    // ideally i should have startIdx, middleIdx and endIdx and then pick first bigger letter than startIdx
+    // target = 1
+    // 0, 1, 2, 3, 4, 5, 6, 7, 8
+    // 1, 1, 1, 1, 1, 2, 2, 2, 2
+    // startIdx = 0, endIdx = 8, middleIdx = 4
+    // startIdx = 5, endIdx = 8, middleIdx = 6
+    // startIdx = 5, endIdx = 5, middleIdx = 5
+    // startIdx = 5, endIdx = 5, middleIdx = 5
+    // startIdx = 5, endIdx = 4
+    // When target is greater than or equal to current number then we have to go right
+    // Othervice we have to go left
     fun nextGreatestLetter(letters: CharArray, target: Char): Char {
         var startIdx = 0
         var endIdx = letters.lastIndex
