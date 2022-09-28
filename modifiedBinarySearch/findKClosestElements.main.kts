@@ -5,7 +5,7 @@
 import java.util.LinkedList
 
 // S: O(1)
-// T: O(logn) or O(k)?
+// T: O(logn + k)
 class Solution {
     fun findClosestElements_uglyLongFirstApproach(arr: IntArray, k: Int, x: Int): List<Int> {
         fun findTwoPointersCenter(): Int {
