@@ -15,49 +15,32 @@ class Solution {
             return if (nums.first() == target) 0 else -1
         }
 
-        fun findIdxOfBiggestElement(): Int {
-            var start = 0
-            var end = nums.lastIndex
-
-            var max = Int.MIN_VALUE
-            var maxIdx = -1
-
-            while (end >= start) {
-                val mid = start + (end - start) / 2
-                if (mid + 1 == nums.size && nums[mid + 1] > nums[mid]) {
-                    start = mid + 1
-                } else {
-                    end = mid - 1
-                }
-
-                if (nums[mid] > max) {
-                    max = nums[mid]
-                    maxIdx = mid
-                }
-            }
-
-            return maxIdx
-        }
-
-        val biggerValueIdx = findIdxOfBiggestElement()
-        val firstPartIds = binarySearch(nums, target, 0, biggerValueIdx)
-        return if (firstPartIds != -1) firstPartIds
-        else binarySearch(nums, target, biggerValueIdx + 1, nums.lastIndex)
-    }
-
-    private fun binarySearch(nums: IntArray, target: Int, initialStart: Int, initialEnd: Int): Int {
-        var start = initialStart
-        var end = initialEnd
+        var start = 0
+        var end = nums.lastIndex
 
         while (end >= start) {
             val mid = start + (end - start) / 2
 
             if (nums[mid] == target) {
                 return mid
-            } else if (nums[mid] > target) {
-                end = mid - 1
+            } else if (nums[start] < nums[mid]) {
+                // left side is properly sorted
+                if (target >= nums[start] && target <= nums[mid]) {
+                    end = mid - 1
+                } else {
+                    start = mid + 1
+                }
+            } else if (nums[end] > nums[mid]) {
+                // right side is properly sorted
+                if (target >= nums[mid] && target <= nums[end]) {
+                    start = mid + 1
+                } else {
+                    end = mid - 1
+                }
             } else {
-                start = mid + 1
+                 if (nums[start] == target) return start
+                if (nums[end] == target) return end
+                return -1
             }
         }
 
@@ -69,4 +52,7 @@ fun main() {
     println(Solution().search(intArrayOf(4,5,6,7,0,1,2), 0) == 4)
     println(Solution().search(intArrayOf(4,5,6,7,0,1,2), 3) == -1)
     println(Solution().search(intArrayOf(1), 0) == -1)
+    println(Solution().search(intArrayOf(1,3), 0) == -1)
+    println(Solution().search(intArrayOf(4,5,6,7,8,1,2,3), 8) == 4)
+    println(Solution().search(intArrayOf(3,1), 1) == 1)
 }
