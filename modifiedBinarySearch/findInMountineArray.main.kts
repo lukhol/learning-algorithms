@@ -65,7 +65,7 @@ class Solution {
         val maxIdx = findIndexOfBiggestElement()
         val firstPartIdx = binarySearch(0, maxIdx)
         if (firstPartIdx != -1) return firstPartIdx
-        return binarySearch(maxIdx, mountainArr.length() - 1)
+        return binarySearch(maxIdx, mountainArr.length() - 1, false)
     }
 }
 
@@ -74,4 +74,5 @@ fun main() {
     println(Solution().findInMountainArray(3, MountainArray(intArrayOf(0,1,2,4,2,1))) == -1)
     println(Solution().findInMountainArray(12, MountainArray(intArrayOf(1,3,8,12))) == 3)
     println(Solution().findInMountainArray(10, MountainArray(intArrayOf(10, 9, 8))) == 0)
+    println(Solution().findInMountainArray(2, MountainArray(intArrayOf(1, 5, 2))) == 2)
 }
