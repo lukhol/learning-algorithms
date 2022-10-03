@@ -24,7 +24,7 @@ class Solution {
 
             while (end >= start) {
                 val mid = start + (end - start) / 2
-                if (nums[mid + 1] > nums[mid]) {
+                if (mid + 1 == nums.size && nums[mid + 1] > nums[mid]) {
                     start = mid + 1
                 } else {
                     end = mid - 1
