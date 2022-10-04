@@ -141,7 +141,7 @@ fun binarySearch(arr: IntArray, target: Int): Int {
         }
     }
 
-    // left == right
+    // start == end
     // 1 more element to check
     return if (arr[start] == target) start else -1
 }
@@ -172,7 +172,7 @@ fun binarySearch(arr: IntArray, target: Int): Int {
         }
     }
 
-    // left + 1 == right
+    // start + 1 == end
     // two more element to check
     if (arr[start] == target) return start
     if (arr[end] == target) return end
