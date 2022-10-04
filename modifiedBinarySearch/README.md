@@ -117,6 +117,7 @@ fun findNextBiggerElementIndex(arr: IntArray, target: Int): Int {
 ```
 
 **Template 2**
+
 Post-processing required. Loop/Recursion ends when you have 1 element left. Need to access it if remaining element meets the condition.
 ```kotlin
 fun main() {
@@ -148,6 +149,7 @@ fun binarySearch(arr: IntArray, target: Int): Int {
 ```
 
 **Template 3**
+
 Post-processing required. Loop/Recursion ends when you have 2 elements left. Need to access if the remaining elements meet the condition.
 ```kotlin
 fun main() {
