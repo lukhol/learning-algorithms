@@ -14,6 +14,8 @@ At each loop iteration we are rejecting half of the array by choosing only subar
 
 ### Template
 
+https://leetcode.com/explore/learn/card/binary-search/136/template-analysis/935/
+
 **Typical binary search for some value**
 ```kotlin
 fun binarySearch(arr: IntArray, target: Int): Int {
