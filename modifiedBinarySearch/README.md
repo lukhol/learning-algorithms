@@ -16,7 +16,8 @@ At each loop iteration we are rejecting half of the array by choosing only subar
 
 https://leetcode.com/explore/learn/card/binary-search/136/template-analysis/935/
 
-**Typical binary search for some value**
+**Template 1 - Typical binary search for some value**
+Most simple one, no post processing required. No analysis on neighbors is needed.
 ```kotlin
 fun binarySearch(arr: IntArray, target: Int): Int {
     var start = 0
@@ -112,5 +113,69 @@ fun findNextBiggerElementIndex(arr: IntArray, target: Int): Int {
 
     // Or just use start index
     return  elementIndex % arr.size
+}
+```
+
+**Template 2**
+Post-processing required. Loop/Recursion ends when you have 1 element left. Need to access it if remaining element meets the condition.
+```kotlin
+fun main() {
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 1) == 0)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 2) == 1)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 3) == 2)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 4) == 3)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 89) == -1)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), -13) == -1)
+    println(binarySearch(intArrayOf(1, 2, 4, 5), 3) == -1)
+}
+
+fun binarySearch(arr: IntArray, target: Int): Int {
+    var start = 0
+    var end = arr.lastIndex
+    while (start < end) {
+        val middle = start + (end - start) / 2
+        if (arr[middle] < target) {
+            start = middle + 1
+        } else {
+            end = middle
+        }
+    }
+
+    // left == right
+    // 1 more element to check
+    return if (arr[start] == target) start else -1
+}
+```
+
+**Template 3**
+Post-processing required. Loop/Recursion ends when you have 2 elements left. Need to access if the remaining elements meet the condition.
+```kotlin
+fun main() {
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 1) == 0)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 2) == 1)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 3) == 2)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 4) == 3)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), 89) == -1)
+    println(binarySearch(intArrayOf(1, 2, 3, 4), -13) == -1)
+    println(binarySearch(intArrayOf(1, 2, 4, 5), 3) == -1)
+}
+
+fun binarySearch(arr: IntArray, target: Int): Int {
+    var start = 0
+    var end = arr.lastIndex
+    while (start + 1 < end) {
+        val middle = start + (end - start) / 2
+        if (arr[middle] < target) {
+            start = middle
+        } else {
+            end = middle
+        }
+    }
+
+    // left + 1 == right
+    // two more element to check
+    if (arr[start] == target) return start
+    if (arr[end] == target) return end
+    return -1
 }
 ```
