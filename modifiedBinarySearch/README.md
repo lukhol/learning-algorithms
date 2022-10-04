@@ -3,6 +3,8 @@
 ### Description
 Binary search is an algorithm from 'divide and conquer` family. It's space complexity is O(1) and time complexity is O(logn) which is the fasters algorithm other than O(1). Input data has to be ordered in any direction (asc or desc) for this algorithm to work properly.
 
+At each loop iteration we are rejecting half of the array by choosing only subarray to the left or to the right of the middle element. It's important to also reject middle element to do not fall into infinite loop.
+
 - `start + (end - start) / 2` comparing to `(start+end) / 2` prevents overflow.
 - sometimes it's useful to do binary search twice and then combine the results - for example when searching ranges
 - when array is shifted then it's usefull to check which part - left or right is properly 
@@ -29,5 +31,56 @@ fun binarySearch(arr: IntArray, target: Int): Int {
     }
     
     return -1
+}
+```
+
+**Find first/last occurrence of some element**
+```kotlin
+fun main() {
+    println(findLastOccurrenceOfElement(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4), 1) == 5)
+    println(findLastOccurrenceOfElement(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4), 5) == -1)
+    println(findLastOccurrenceOfElement(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4), 2) == 6)
+
+    println(findFirstOccurrenceOfElement(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4), 1) == 3)
+    println(findFirstOccurrenceOfElement(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4), 5) == -1)
+    println(findFirstOccurrenceOfElement(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4), 2) == 6)
+}
+
+fun findLastOccurrenceOfElement(arr: IntArray, target: Int): Int {
+    var start = 0
+    var end = arr.lastIndex
+    var elementIndex = -1
+    while (end >= start) {
+        val middle = start + (end - start) / 2
+        if (arr[middle] <= target) {
+            if (arr[middle] == target) {
+                elementIndex = middle
+            }
+            start = middle + 1
+        } else {
+            end = middle - 1
+        }
+    }
+
+    return elementIndex
+}
+
+fun findFirstOccurrenceOfElement(arr: IntArray, target: Int): Int {
+    var start = 0
+    var end = arr.lastIndex
+    var elementIndex = -1
+    while (end >= start) {
+        val middle = start + (end - start) / 2
+        if (arr[middle] >= target) {
+            if (arr[middle] == target) {
+                elementIndex = middle
+            }
+            end = middle - 1
+        } else {
+            start = middle + 1
+        }
+    }
+
+    return elementIndex
 }
 ```
