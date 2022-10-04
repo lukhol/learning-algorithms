@@ -84,3 +84,31 @@ fun findFirstOccurrenceOfElement(arr: IntArray, target: Int): Int {
     return elementIndex
 }
 ```
+
+**Find next greater or smaller element**
+```kotlin
+fun main() {
+    println(findNextBiggerElementIndex(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4, 8), 1) == 6)
+    println(findNextBiggerElementIndex(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4, 8), 4) == 9)
+    println(findNextBiggerElementIndex(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4, 8), 5) == 9)
+    println(findNextBiggerElementIndex(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4, 8), -1) == 1)
+}
+
+fun findNextBiggerElementIndex(arr: IntArray, target: Int): Int {
+    var start = 0
+    var end = arr.lastIndex
+    var elementIndex = 0
+    while (end >= start) {
+        val middle = start + (end - start) / 2
+        if (target >= arr[middle]) {
+            elementIndex = middle + 1
+            start = middle + 1
+        } else {
+            end = middle - 1
+        }
+    }
+
+    // Or just use start index
+    return  elementIndex % arr.size
+}
+```
