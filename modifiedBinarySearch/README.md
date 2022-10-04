@@ -8,6 +8,7 @@ Binary search is an algorithm from 'divide and conquer` family. It's space compl
 - when array is shifted then it's usefull to check which part - left or right is properly 
 - when array is a mountain array then it's usefull to just check in which direction values are increasing
 - most of the questions that need to search for some value in sorted array can be solved in O(logn) time using binary search
+- in one of the steps (when choosing left or right) we can do `start = middle` or `end = middle` (without +/- 1) but in such case we need to remove equality from while loop condition to avoid infinite loop. Also additional check for single element array is needed.
 
 ### Template
 
