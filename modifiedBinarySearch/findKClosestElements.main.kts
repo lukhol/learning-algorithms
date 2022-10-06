@@ -83,5 +83,4 @@ fun main() {
   	println(Solution().findClosestElements(intArrayOf(1, 3), 1, 2) == listOf(1)) 
   	println(Solution().findClosestElements(intArrayOf(1,2,3,4,5), 4, 3) == listOf(1, 2, 3, 4)) 
     println(Solution().findClosestElements(intArrayOf(1,2,3,4,5), 4, -1) == listOf(1, 2, 3, 4)) 
-    println(Solution().findClosestElements(intArrayOf(1,1,1,10,10,10), 1, 9) == listOf(downTo())) 
 }
