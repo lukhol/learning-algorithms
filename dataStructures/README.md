@@ -1,1 +1,1 @@
-Directory for data structures knowledge - i will probably do not implement own versions of datastructures but rather keep there properties of different data structures and information when and why it's good for certain use cases.
+Directory for data structures knowledge - I will probably do not implement own versions of data structures but rather keep there properties of different data structures and information when and why they are good for certain use cases.
