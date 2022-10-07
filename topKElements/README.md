@@ -4,6 +4,17 @@
 
 This pattern aims to find most frequent/largest/smallest elements in a given set. The key data structure to solve top K elements problem is a `Mean Heap` or `Max Heap`. In Java it's `PriorityQueue`. Time complexity for heap is `O(log n)` for inserts and deletes (because of required rebalancing).
 
+Generally `Heap` is not the same as `PriorityQueue`. `PriorityQueue` is an abstract data structure while `Heap` is a data structure. `Heap` is not a `PriorityQueue` but a way how it can be implmented. Implementing `PriorityQueue` with a `Heap` is the most efficient implementation.
+
+`Heap` is in general a special type binary tree that must follow below criterias:
+- it's a complete binary tree (all levels has to be fully filled except the last one which can be not fully filed from the right side)
+- the value of each nod must be not greater/not smaller than the value of it's child nodes
+- `insert` / `delete` takes `log n` time
+- obtaining biggest/smallest element takes constance time `O(1)`
+
+
+
+**Helpful tips** 
 - when searching for any kth min/max value we do not need to store entire dataset in the heap. It's enough to store `k` elements in the heap because we are interested only in largest/smallest k elements
 - it's sometimes helpful to create helper class like `class Entry(val key: String, var value: Int)` and then sort by second and still have access to that first value `key`
 - when we have mutable data strucutre like Entry from previous example we can `poll` item from the heap, modify that entry and add it again
