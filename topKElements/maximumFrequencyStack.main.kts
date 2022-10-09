@@ -1,6 +1,34 @@
 import java.util.*
 
+// Better solution that I didn't come up by my self - just implemented
+// pop - T: O(log n)
+// push - T: O(log n)
+// S: O(n)
 class FreqStack {
+    private val map = hashMapOf<Int, Int>()
+    private val heap = PriorityQueue(
+        compareByDescending<Item> { it.count }
+            .thenByDescending { it.offset }
+    )
+    private var offset = 0
+    data class Item(val value: Int, val count: Int, val offset: Int)
+
+    fun push(`val`: Int) {
+        map.compute(`val`) { _, value -> (value ?: 0) + 1 }
+        heap.add(Item(`val`, map[`val`]!!, offset++))
+    }
+
+    fun pop(): Int {
+        val popped = heap.poll()
+        map.compute(popped.value) { _, value -> (value ?: 0) - 1 }
+        return popped.value
+    }
+}
+
+// S: O(n)
+// pop - T: O(log n)
+// push - T: O(log n)
+class FreqStack2 {
     private val map = hashMapOf<Int, Item>()
     private val heap = PriorityQueue(
         compareByDescending<Item> { it.count }
