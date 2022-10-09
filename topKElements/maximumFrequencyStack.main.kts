@@ -72,6 +72,36 @@ class FreqStack2 {
     }
 }
 
+// LeetCode propose solution - best one in time complexity
+// Store value to it's frequency map (O(1) time access)
+// Then store frequency to all items in this frequency
+// 
+// pop 
+//  1. get all items with most frequency from `group` map
+//  2. pop from the stack, update poped value frequencyCount
+class FreqStack3 {
+    private val freq = hashMapOf<Int, Int>() // value -> currentFrequency
+    private val group = hashMapOf<Int, Stack<Int>>() // - frequency -> all items in this frequency stored in FIFO (Stack)
+    private var maxFreq = 0
+
+    fun push(`val`: Int) {
+        val currentFrequency = freq.getOrDefault(`val`, 0) + 1
+        freq[`val`] = currentFrequency
+        maxFreq = Math.max(maxFreq, currentFrequency)
+        group.computeIfAbsent(currentFrequency) { Stack() }.push(`val`)
+    }
+
+    fun pop(): Int {
+        val x = group[maxFreq]!!.pop()
+        freq[x] = freq[x]!! - 1
+        if (group[maxFreq]!!.size == 0) {
+            maxFreq--
+        }
+
+        return x
+    }
+}
+
 fun main() {
     val freqStack = FreqStack()
     freqStack.push(5) // The stack is [5]
