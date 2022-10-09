@@ -19,6 +19,7 @@ Generally `Heap` is not the same as `PriorityQueue`. `PriorityQueue` is an abstr
 - it's sometimes helpful to create helper class like `class Entry(val key: String, var value: Int)` and then sort by second and still have access to that first value `key`
 - when we have mutable data strucutre like Entry from previous example we can `poll` item from the heap, modify that entry and add it again
 - it is useful to use `Min Heap` when we are searching for **largest** values because we are able to compare the smallest element on the heap with next value. When next value is bigger than smallest value on a heap then we can `poll` that smallest value and add next item instead. In such a way we can easily store only k top elements in a heap. Also kth element is the first one on a heap.
+- sometimes it's needed to sort items on the heap based on multiple fields using comparator that use more than one field
 
 
 ### Template
