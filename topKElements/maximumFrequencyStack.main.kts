@@ -1,5 +1,7 @@
 import java.util.*
 
+// https://leetcode.com/problems/maximum-frequency-stack/
+
 // Better solution that I didn't come up by my self - just implemented
 // pop - T: O(log n)
 // push - T: O(log n)
