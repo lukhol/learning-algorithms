@@ -25,6 +25,8 @@ class Solution {
         fun valueInArray(nums: List<List<Int>>): Int = nums[y][x]
     }
 
+    // S: O(m) where m is numbers of rows (length of nums array)
+    // T: O(n log m) where n is total number of elements in all arrays from nums array 
     fun smallestRange(nums: List<List<Int>>): IntArray {
         val minHeap = PriorityQueue<Item>(compareBy { nums[it.y][it.x] })
         var biggest = Int.MIN_VALUE
