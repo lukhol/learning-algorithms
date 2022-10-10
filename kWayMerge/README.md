@@ -4,6 +4,10 @@
 
 This pattern is useful when dealing with a list of sorted arrays. Whenever we are given `K` sorted arrays, we can use a Heap to efficiently perform a sorted traversal of all the elements of all ararys without creating merged array. We can push the smallest (first) element of each array to the `Min Heap` with it's indexes (to keep track of which array the element came from) to get the overall minimum. Then we can remove top element from the heap to get the smallest element and push the next element from the same array, to which this smallest element belonged, to the heap. Then repeate that process until all elements from all arrays are processed.
 
+**Tips**
+- when searching for kth minimum value we can use `MinHeap` and just count number of added elements. 
+- 
+
 ### Template
 ```kotlin
 data class Item(val value: Int, val arrayIdx: Int, val inArrayIdx: Int)
