@@ -39,6 +39,24 @@ fun binarySearch(arr: IntArray, target: Int): Int {
 
 **Find first/last occurrence of some element**
 ```kotlin
+fun findFirstOneIndex(arr: IntArray, n: Int) : Int {
+    var left = 1
+    var right = n
+    while (left < right) {
+        val mid = left + (right - left) / 2
+        if (arr[mid] == 1) {
+            right = mid
+        } else {
+            left = mid + 1
+        }
+    }
+    return left
+}
+
+println(findFirstOneIndex(intArrayOf(0, 0, 0, 0, 1, 1), 6))
+```
+
+```kotlin
 fun main() {
     println(findLastOccurrenceOfElement(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4), 1) == 5)
     println(findLastOccurrenceOfElement(intArrayOf(-1, 0, 0, 1, 1, 1, 2, 3, 4), 5) == -1)
