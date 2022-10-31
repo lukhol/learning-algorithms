@@ -1,96 +1,68 @@
 #!/usr/bin/env kotlin
+// https://leetcode.com/problems/insert-interval/description/
 
 // Given a list of non-overlapping intervals sorted by their start time,
 // insert a given interval at the correct position and merge all necessary
 // intervals to produce a list that has only mutually exclusive intervals.
 
-data class Interval(val start: Int, val end: Int)
+class Solution {
+    fun insert(intervals: Array<IntArray>, newInterval: IntArray): List<List<Int>> {
+        if (intervals.isEmpty()) return listOf(newInterval.toList())
+        val result = arrayListOf<List<Int>>()
+        var globalIdx = 0
 
-fun insertInterval(intervals: List<Interval>, newInterval: Interval): List<Interval> {
-    if (intervals.isEmpty()) {
-        return listOf(newInterval)
-    }
-
-    val mergedIntervals = arrayListOf<Interval>()
-
-    var globalIdx = 0
-    while (intervals.size > globalIdx && newInterval.start > intervals[globalIdx].end) {
-        mergedIntervals.add(intervals[globalIdx])
-        globalIdx++
-    }
-
-    if (globalIdx == intervals.size) return mergedIntervals
-
-    var start = Math.min(intervals[globalIdx].start, newInterval.start)
-    var end = Math.max(intervals[globalIdx].end, newInterval.end)
-    for (idx in globalIdx..intervals.lastIndex) {
-        val currentInterval = intervals[idx]
-        if (currentInterval.start > end) {
-            mergedIntervals.add(Interval(start, end))
-            start = currentInterval.start
-            end = currentInterval.end
-        } else {
-            end = Math.max(currentInterval.end, end)
+        // Add all intervals that ends before newInterval starts
+        while (intervals.size > globalIdx && intervals[globalIdx][1] < newInterval[0]) {
+            result.add(intervals[globalIdx++].toList())
         }
+
+        val start = Math.min(if (globalIdx == intervals.size) newInterval[0] else intervals[globalIdx][0], newInterval[0])
+        // End will be expanded in while loop later - for now we don't know if newInterval overlaps with the next one
+        var end = newInterval[1]
+
+        // Expand current interval
+        while (intervals.size > globalIdx && intervals[globalIdx][0] <= end) {
+            end = Math.max(end, intervals[globalIdx++][1])
+        }
+
+        // Add expanded interval to the result list
+        result.add(listOf(start, end))
+
+        // Add rest of the intervals
+        for(idx in globalIdx .. intervals.lastIndex) {
+            result.add(intervals[idx].toList())
+        }
+
+        return result
     }
-
-    mergedIntervals.add(Interval(start, end))
-
-    return mergedIntervals
 }
 
-println(
-    insertInterval(
-        arrayListOf(Interval(1, 3), Interval(5, 7), Interval(8, 12)),
-        Interval(4, 6)
-    ) == listOf(Interval(1, 3), Interval(4, 7), Interval(8, 12))
-)
 
-println(
-    insertInterval(
-        arrayListOf(Interval(1, 3), Interval(5, 7), Interval(8, 12)),
-        Interval(4, 10)
-    ) == listOf(
-        Interval(1, 3), Interval(4, 12)
+fun main() {
+    println(
+        Solution().insert(
+            arrayOf(intArrayOf(1, 3), intArrayOf(5, 7), intArrayOf(8, 12)),
+            intArrayOf(4, 6)
+        ) == listOf(listOf(1, 3), listOf(4, 7), listOf(8, 12))
     )
-)
-println(
-    insertInterval(
-        arrayListOf(Interval(2, 3), Interval(5, 7)),
-        Interval(1, 4)
-    ) == listOf(
-        Interval(1, 4), Interval(5, 7)
+
+    println(
+        Solution().insert(
+            arrayOf(intArrayOf(1, 3), intArrayOf(5, 7), intArrayOf(8, 12)),
+            intArrayOf(4, 10)
+        ) == listOf(
+            listOf(1, 3), listOf(4, 12)
+        )
     )
-)
-
-
-// Other, very similar approach:
-fun insertInterval(intervals: List<Interval>, newInterval: Interval): List<Interval> {
-    if (intervals.isEmpty()) return listOf(newInterval)
-    val result = arrayListOf<Interval>()
-    var globalIdx = 0
-
-    // Add all intervals that ends before newInterval starts
-    while (intervals.size > globalIdx && intervals[globalIdx].end < newInterval.start) {
-        result.add(intervals[globalIdx++])
-    }
-
-    var start = Math.min(intervals[globalIdx].start, newInterval.start) 
-    var end = Math.max(intervals[globalIdx].end, newInterval.end)
-
-    // Expand current interval
-    while (intervals.size > globalIdx && intervals[globalIdx].start < end) {
-        end = Math.max(end, intervals[globalIdx++].end)
-    }
-
-    // Add expanded interval to the result list
-    result.add(Interval(start, end))
-
-    // Add rest of the intervals
-    for(idx in globalIdx .. intervals.lastIndex) {
-        result.add(intervals[idx])
-    }
-
-    return result
+    println(
+        Solution().insert(
+            arrayOf(intArrayOf(2, 3), intArrayOf(5, 7)),
+            intArrayOf(1, 4)
+        ).toList() == listOf(
+            listOf(1, 4), listOf(5, 7)
+        )
+    )
 }
+
+main()
     
