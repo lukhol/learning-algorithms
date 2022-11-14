@@ -74,3 +74,11 @@ It's optimization for quick union implementation for faster find method. In wors
 
 
 #### Path compression
+```java
+public int find(int x) {
+    if (x == root[x]) {
+        return x;
+    }
+    return root[x] = find(root[x]);
+}
+```
