@@ -87,7 +87,33 @@ public int find(int x) {
 ```
 
 ### Summary
-Union find data structure that use union by rnak and path compression:
+Union find data structure that use union by rank and path compression:
 ```kotlin
-TODO
+class DisjointSet(size: Int): UnionFind {
+    private val disjointSet = IntArray(size) { it }
+    private val treeDepth = IntArray(size) { it }
+
+    override fun find(node: Int): Int {
+        if (node == disjointSet[node]) return node
+        disjointSet[node] = find(disjointSet[node])
+        return disjointSet[node]
+    }
+
+    override fun rootsCount(): Int = disjointSet.map { find(it) }.toSet().size
+
+    override fun union(a: Int, b: Int) {
+        val rootA = find(a)
+        val rootB = find(b)
+        if (rootA != rootB) {
+            if (treeDepth[rootA] > treeDepth[rootB]) {
+                disjointSet[rootB] = rootA
+            } else if (treeDepth[rootA] < treeDepth[rootB]) {
+                disjointSet[rootA] = rootB
+            } else {
+                disjointSet[rootB] = rootA
+                treeDepth[rootA] += 1
+            }
+        }
+    }
+}
 ```
