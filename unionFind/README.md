@@ -34,7 +34,7 @@ class UnionFindFastFind(n: Int): UnionFind {
 }
 ```
 
-### Quick union
+#### Quick union
 ```kotlin
 class UnionFindFastUnion(n: Int): UnionFind {
     private val disjointSet = IntArray(n) { it }
