@@ -1,6 +1,6 @@
 ### Binary Tree / Binary Search Tree
 
-** Count number of nodes **
+**Count number of nodes**
 ```kotlin
 class Solution {
     // I need to traverse the tree in in-order manner
@@ -16,7 +16,7 @@ class Solution {
 }
 ```
 
-** Find kth element in the tree **
+**Find kth element in the tree**
 ```kotlin
 class Solution {
     fun kthSmallest(root: TreeNode?, k: Int): Int {
