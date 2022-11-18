@@ -40,3 +40,27 @@ class Solution {
     }
 }
 ```
+
+**Iterative**
+```kotlin
+fun kthSmallest(root: TreeNode?, k: Int): Int {
+    val stack = Stack<TreeNode>()
+    var node = root
+    var counter = 0
+    while (node != null || stack.isNotEmpty()) {
+        while (node != null) {
+            stack.push(node)
+            node = node.left
+        }
+
+        val current = stack.pop()
+        counter++
+        if (counter == k) {
+            return current.`val`
+        }
+        node = current.right
+    }
+
+    return -1
+}
+```
