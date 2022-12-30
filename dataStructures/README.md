@@ -29,4 +29,32 @@ Application of Heap:
 - Stepping median - can be solved with two heaps - `max` with smallest part of the dataset and `min` with biggest part of the dataset
 
 
-## 
+## Trie
+
+`Trie` is a tree like data structure that is used to efficiently find a word or prefix in collection of words. In a Trie, each node in the tree represents a single character in a string. The root node represents the empty string, and the edges between nodes represent the cahracters that make up the string. Each node may have multiple children, representing the different possible characters that can follow the character represented by the node. The easiest possible implementation is below:
+```kotlin
+class TrieNode {
+    val children = mutableMapOf<Char, TrieNode>()
+    var isEndOfWord = false
+}
+
+class Trie {
+    val root = TrieNode()
+
+    fun insert(word: String) {
+        var current = root
+        for (c in word) {
+            current = current.children.getOrPut(c) { TrieNode() }
+        }
+        current.isEndOfWord = true
+    }
+
+    fun search(word: String): Boolean {
+        var current = root
+        for (c in word) {
+            current = current.children[c] ?: return false
+        }
+        return current.isEndOfWord
+    }
+}
+```
