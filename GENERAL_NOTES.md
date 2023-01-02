@@ -35,3 +35,8 @@ class MinStack() {
     }
 }
 ```
+
+
+**Max/Min heap in Kotlin**
+- Min Heap - `val minHeap = PriorityQueue<Int>()`
+- Max Heap -  `val maxHeap = PriorityQueue<Int>(Collections.reverseOrder())`
