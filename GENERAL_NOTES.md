@@ -1,4 +1,4 @@
-**When we need to keep min/max value of a collection we can solve it in a two ways**
+### When we need to keep min/max value of a collection we can solve it in a two ways
 1. Keep lowest/biggest value for each element in a separated instance of the collection (true for collections that keeps order of insertion)
 2. Create data class that will keep original value and min/max so far value.
     
@@ -37,6 +37,6 @@ class MinStack() {
 ```
 
 
-**Max/Min heap in Kotlin**
+### Max/Min heap in Kotlin
 - Min Heap - `val minHeap = PriorityQueue<Int>() / PriorityQueue<Int> { a, b -> a - b }`
 - Max Heap -  `val maxHeap = PriorityQueue<Int>(Collections.reverseOrder()) / PriorityQueue<Int> { a, b -> b - a }`
