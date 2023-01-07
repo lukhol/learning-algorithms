@@ -1,4 +1,5 @@
 #!/usr/bin/envkotlin kotlin
+// https://leetcode.com/problems/first-missing-positive/submissions/873190420/
 
 // Given an unsorted array containing numbers, find the smallest missing positive number in it.
 fun main() {
@@ -16,6 +17,11 @@ fun main() {
             val isCurrentNumberOnItsIndex = arr[idx] == idx + 1
             val isCurrentNumberInBounds = arr[idx] > 0 && arr[idx] <= arr.size
             if (!isCurrentNumberOnItsIndex && isCurrentNumberInBounds) {
+                if (arr[idx] == arr[arr[idx] - 1]) {
+                    // If the number is duplicated - just skip it.
+                    idx++
+                    continue
+                }
                 swap(arr, idx, arr[idx] - 1)
             } else {
                 idx++
