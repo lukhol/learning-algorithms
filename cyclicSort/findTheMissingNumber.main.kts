@@ -5,29 +5,32 @@
 fun main() {
     // S: O(1)
     // T: O(n)
-    fun findTheMissingNumber(arr: MutableList<Int>): Int {
+     fun missingNumber(arr: MutableList<Int>): Int {
         if (arr.isEmpty()) return -1
-        var idx = 0
-        var startedFrom = arr.first()
-        while (idx != arr.size) {
-            println("$arr, started from: $startedFrom, idx: $idx")
-            if (arr[idx] != idx) {
-                val tmp = arr[idx]
-                val tmpIdx = Math.min(tmp, arr.lastIndex)
-
-                arr[idx] = arr[tmpIdx]
-                arr[tmpIdx] = tmp
-
-                if (arr[idx] == idx) {
-                    idx++
-                    startedFrom = arr[Math.min(idx, arr.lastIndex)]
-                } else if(startedFrom == arr[idx]) {
-                    return idx
+        for (idx in 0 .. arr.lastIndex) {
+            
+            var prev: Int? = null
+            while (arr[idx] != idx) {
+                val atThisIndex = arr[idx]
+                if (prev != null && prev == atThisIndex) { 
+                    break 
                 }
-            } else {
-                idx++
-                startedFrom = arr[Math.min(idx, arr.lastIndex)]
+
+                // There is a number bigger than lastIndex - in such case we will pick last one
+                val next = arr[Math.min(atThisIndex, arr.lastIndex)] 
+
+                // I need to keep track of previous element to prevent infinite loop
+                if (prev != null && prev == next) { 
+                    break 
+                }
+                arr[Math.min(atThisIndex, arr.lastIndex)] = atThisIndex 
+                arr[idx] = next 
+                prev = atThisIndex
             }
+        }
+
+        for (idx in 0 .. arr.lastIndex) {
+            if (idx != arr[idx]) return idx
         }
 
         return arr.size
@@ -62,4 +65,10 @@ fun findTheMissingNumber(arr: MutableList<Int>): Int {
 
     // If didn't find then return missingNumber because it's just arr.size
     return missingNumber
+}
+
+ fun swap(arr: IntArray, a: Int, b: Int) {
+    val tmp = arr[a]
+    arr[a] = arr[b]
+    arr[b] = tmp
 }
