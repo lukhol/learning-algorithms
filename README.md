@@ -9,3 +9,6 @@ Idea is to do (ideally by the end of 2022)
 
 Future plans
 1. Create visualizer for some algorithm / data structure, for example - graph, tree, sorting, balancing tree or other.
+
+
+[LeetCode account](https://leetcode.com/lukhol/)
